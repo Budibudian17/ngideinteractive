@@ -28,87 +28,68 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-signal: var(--signal);
-  --color-signal-dim: var(--signal-dim);
-  --color-void-raised: var(--void-raised);
-  --font-display: "Chakra Petch", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --color-soft: var(--soft);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
 }
 
 :root {
-  --radius: 0.125rem;
-  --background: oklch(0.142 0.008 265);
-  --foreground: oklch(1 0 0);
-  --card: oklch(0.19 0.017 257);
-  --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.19 0.017 257);
-  --popover-foreground: oklch(1 0 0);
-  --primary: oklch(0.78 0.105 190);
-  --primary-foreground: oklch(0.142 0.008 265);
-  --secondary: oklch(0.25 0.024 254);
-  --secondary-foreground: oklch(0.82 0.005 210);
-  --muted: oklch(0.21 0.013 257);
-  --muted-foreground: oklch(0.78 0.008 210);
-  --accent: oklch(0.78 0.105 190);
-  --accent-foreground: oklch(0.142 0.008 265);
-  --destructive: oklch(0.62 0.2 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.36 0.024 245 / 55%);
-  --input: oklch(0.36 0.024 245);
-  --ring: oklch(0.78 0.105 190);
-  --signal: oklch(0.78 0.105 190);
-  --signal-dim: oklch(0.78 0.105 190 / 16%);
-  --void-raised: oklch(0.17 0.012 260);
+  --radius: 0rem;
+  --background: oklch(0.105 0 0);
+  --foreground: oklch(0.955 0.006 85);
+  --card: oklch(0.16 0 0);
+  --card-foreground: oklch(0.955 0.006 85);
+  --popover: oklch(0.16 0 0);
+  --popover-foreground: oklch(0.955 0.006 85);
+  --primary: oklch(0.955 0.006 85);
+  --primary-foreground: oklch(0.105 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(0.955 0.006 85);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.62 0.006 85);
+  --soft: oklch(0.76 0.006 85);
+  --accent: oklch(0.955 0.006 85);
+  --accent-foreground: oklch(0.105 0 0);
+  --destructive: oklch(0.58 0 0);
+  --destructive-foreground: oklch(0.955 0.006 85);
+  --border: oklch(0.955 0.006 85 / 18%);
+  --input: oklch(0.955 0.006 85 / 25%);
+  --ring: oklch(0.955 0.006 85);
 }
 
 * { border-color: var(--color-border); }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background-color: var(--color-background);
+  background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-mono);
-}
-
-@utility star-field {
-  background-image:
-    radial-gradient(circle at 11% 22%, var(--color-muted-foreground) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 73% 18%, var(--color-primary) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 87% 63%, var(--color-muted-foreground) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 37% 72%, var(--color-muted-foreground) 0 1px, transparent 1.5px);
-  background-size: 271px 271px, 337px 337px, 419px 419px, 359px 359px;
-}
-
-@utility coordinate-grid {
-  background-image:
-    linear-gradient(var(--color-signal-dim) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-signal-dim) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, black, transparent 92%);
-}
-
-@utility hud-button {
-  position: relative;
+  font-family: var(--font-sans);
   letter-spacing: 0;
-  &::before, &::after {
-    content: "";
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    border-color: var(--color-primary);
-  }
-  &::before { left: -4px; top: -4px; border-left: 1px solid; border-top: 1px solid; }
-  &::after { right: -4px; bottom: -4px; border-right: 1px solid; border-bottom: 1px solid; }
 }
 
-@utility radar-sweep {
-  background: conic-gradient(from 250deg, transparent 0deg, transparent 275deg, var(--color-signal-dim) 330deg, var(--color-primary) 360deg);
-  animation: radar 6s linear infinite;
+.hero-vignette {
+  background: linear-gradient(90deg, var(--color-background) 0%, transparent 62%), linear-gradient(0deg, var(--color-background) 0%, transparent 45%);
 }
+.project-shade { background: linear-gradient(0deg, var(--color-background) 0%, transparent 60%); }
+.outline-type { color: transparent; -webkit-text-stroke: 1px var(--color-foreground); }
+.film-grain::after {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  content: "";
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+}
+.status-pulse { animation: status 2s ease-in-out infinite; }
+@keyframes status { 50% { opacity: 0.25; } }
 
-@keyframes radar { to { transform: rotate(360deg); } }
-
+@media (max-width: 767px) {
+  .hero-vignette { background: linear-gradient(0deg, var(--color-background) 0%, transparent 72%), linear-gradient(90deg, var(--color-background) 0%, transparent 95%); }
+  .outline-type { -webkit-text-stroke-width: 0.75px; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .radar-sweep { animation: none; }
+  .status-pulse { animation: none; }
 }

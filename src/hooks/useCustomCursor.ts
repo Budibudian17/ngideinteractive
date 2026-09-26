@@ -2,6 +2,14 @@ import { useEffect } from 'react';
 
 export const useCustomCursor = () => {
   useEffect(() => {
+    // Check if device is mobile (touch device)
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Don't create custom cursor on mobile devices
+    if (isMobile) {
+      return;
+    }
+
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     cursor.style.cssText = `

@@ -156,7 +156,15 @@ a:hover {
 
 @media (max-width: 767px) {
   .hero-vignette { background: linear-gradient(0deg, var(--color-background) 0%, transparent 72%), linear-gradient(90deg, var(--color-background) 0%, transparent 95%); }
-  .outline-type { -webkit-text-stroke-width: 0.75px; }
+  .outline-type { -webkit-text-stroke-width: 0.5px; }
+  
+  /* Hide custom cursor on mobile devices */
+  html {
+    cursor: auto !important;
+  }
+  * {
+    cursor: auto !important;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

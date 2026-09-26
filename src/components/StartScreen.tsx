@@ -77,32 +77,32 @@ export const StartScreen = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
       
       {/* Content */}
-      <div className={`relative z-10 text-center transition-all duration-1000 ${showContent && !isExiting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`relative z-10 text-center transition-all duration-1000 px-5 ${showContent && !isExiting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Transmission ID */}
-        <div className="mb-8 font-mono text-[10px] uppercase text-muted-foreground tracking-widest">
+        <div className="mb-6 font-mono text-[8px] uppercase text-muted-foreground tracking-widest sm:mb-8 sm:text-[10px]">
           <span>{typewriterText}</span>
-          <span className="inline-block w-2 h-4 ml-1 bg-foreground animate-pulse" />
+          <span className="inline-block w-2 h-3 ml-1 bg-foreground animate-pulse sm:h-4" />
         </div>
 
         {/* Main Title */}
-        <h1 className="mb-4 font-display text-[clamp(2.5rem,8vw,6rem)] font-bold uppercase leading-[0.85]">
+        <h1 className="mb-3 font-display text-[clamp(2rem,7vw,4rem)] font-bold uppercase leading-[0.85] sm:mb-4 sm:text-[clamp(2.5rem,8vw,6rem)]">
           Ngide<br /><span className="outline-type">Interactive</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="mb-12 max-w-md mx-auto text-sm text-soft leading-relaxed">
+        <p className="mb-8 max-w-sm mx-auto text-xs text-soft leading-relaxed sm:mb-12 sm:max-w-md sm:text-sm">
           Independent game studio crafting atmospheric worlds from the edge of signal and silence
         </p>
 
         {/* Loading Bar */}
-        <div className="mb-12 max-w-xs mx-auto">
+        <div className="mb-8 max-w-[200px] mx-auto sm:mb-12 sm:max-w-xs">
           <div className="h-px bg-border overflow-hidden">
             <div 
               className="h-full bg-foreground transition-all duration-100 ease-out"
               style={{ width: `${loadingProgress}%` }}
             />
           </div>
-          <div className="mt-2 font-mono text-[8px] uppercase text-muted-foreground text-right">
+          <div className="mt-2 font-mono text-[7px] uppercase text-muted-foreground text-right sm:text-[8px]">
             {loadingProgress}% COMPLETE
           </div>
         </div>
@@ -113,15 +113,15 @@ export const StartScreen = () => {
             <Button 
               onClick={handleEnter}
               size="lg"
-              className="h-14 w-fit rounded-none bg-foreground px-8 font-display text-xs font-bold uppercase text-background hover:bg-soft transition-all duration-300"
+              className="h-12 w-full rounded-none bg-foreground px-6 font-display text-[10px] font-bold uppercase text-background hover:bg-soft transition-all duration-300 sm:h-14 sm:w-fit sm:px-8 sm:text-xs"
             >
-              Enter Transmission <ArrowRight className="ml-2 h-4 w-4" />
+              Enter Transmission <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
         )}
 
         {/* Coordinates */}
-        <div className="mt-16 font-mono text-[8px] uppercase text-muted-foreground tracking-wider">
+        <div className="mt-12 font-mono text-[7px] uppercase text-muted-foreground tracking-wider sm:mt-16 sm:text-[8px]">
           NII // 6.4025° S // 106.8188° E
         </div>
       </div>

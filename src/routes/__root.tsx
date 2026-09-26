@@ -10,62 +10,62 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { reportError } from "../lib/error-reporting";
+import { Error404 } from "../components/Error404";
 
 function NotFoundComponent() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  return <Error404 />;
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    reportError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+    <div className="film-grain min-h-screen bg-background text-foreground flex items-center justify-center relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--color-background)_70%)]" />
+      
+      <div className="relative z-10 max-w-2xl px-6 text-center">
+        <div className="mb-8 flex items-center justify-center gap-3 font-mono text-[10px] uppercase text-muted-foreground">
+          <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+          <span>Critical Error</span>
+        </div>
+
+        <div className="mb-6 font-display text-[clamp(4rem,15vw,8rem)] font-bold uppercase leading-none tracking-tighter">
+          <span className="outline-type">ERR</span>
+        </div>
+
+        <h1 className="mb-4 font-display text-2xl font-bold uppercase md:text-3xl">
+          System Failure
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        
+        <p className="mb-12 max-w-md mx-auto text-sm leading-relaxed text-muted-foreground md:text-base">
+          A critical error occurred in our systems. Our engineers have been notified and are working to resolve the issue.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="h-14 rounded-none bg-foreground px-8 font-display text-xs font-bold uppercase text-background hover:bg-soft transition-all"
           >
-            Try again
+            System Reboot
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          <Link
+            to="/"
+            className="inline-flex h-14 items-center justify-center rounded-none border border-border px-8 font-display text-xs font-bold uppercase hover:bg-card hover:text-foreground transition-all"
           >
-            Go home
-          </a>
+            Emergency Return
+          </Link>
+        </div>
+
+        <div className="mt-16 font-mono text-[9px] uppercase text-muted-foreground/50">
+          NGI-CRIT // DEPOK SECTOR // 6.4025° S // 106.8188° E
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/ngideinteractive.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

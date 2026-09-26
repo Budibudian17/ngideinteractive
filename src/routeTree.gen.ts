@@ -10,33 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Error404RouteImport } from './routes/error-404'
+import { Route as ProjectComingSoonRouteImport } from './routes/project-coming-soon'
+import { Route as SystemMaintenanceRouteImport } from './routes/system-maintenance'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Error404Route = Error404RouteImport.update({
+  id: '/error-404',
+  path: '/error-404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectComingSoonRoute = ProjectComingSoonRouteImport.update({
+  id: '/project-coming-soon',
+  path: '/project-coming-soon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemMaintenanceRoute = SystemMaintenanceRouteImport.update({
+  id: '/system-maintenance',
+  path: '/system-maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/error-404': typeof Error404Route
+  '/project-coming-soon': typeof ProjectComingSoonRoute
+  '/system-maintenance': typeof SystemMaintenanceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/error-404': typeof Error404Route
+  '/project-coming-soon': typeof ProjectComingSoonRoute
+  '/system-maintenance': typeof SystemMaintenanceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/error-404': typeof Error404Route
+  '/project-coming-soon': typeof ProjectComingSoonRoute
+  '/system-maintenance': typeof SystemMaintenanceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/error-404' | '/project-coming-soon' | '/system-maintenance'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/error-404' | '/project-coming-soon' | '/system-maintenance'
+  id:
+    | '__root__'
+    | '/'
+    | '/error-404'
+    | '/project-coming-soon'
+    | '/system-maintenance'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Error404Route: typeof Error404Route
+  ProjectComingSoonRoute: typeof ProjectComingSoonRoute
+  SystemMaintenanceRoute: typeof SystemMaintenanceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +83,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/error-404': {
+      id: '/error-404'
+      path: '/error-404'
+      fullPath: '/error-404'
+      preLoaderRoute: typeof Error404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/project-coming-soon': {
+      id: '/project-coming-soon'
+      path: '/project-coming-soon'
+      fullPath: '/project-coming-soon'
+      preLoaderRoute: typeof ProjectComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/system-maintenance': {
+      id: '/system-maintenance'
+      path: '/system-maintenance'
+      fullPath: '/system-maintenance'
+      preLoaderRoute: typeof SystemMaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Error404Route: Error404Route,
+  ProjectComingSoonRoute: ProjectComingSoonRoute,
+  SystemMaintenanceRoute: SystemMaintenanceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

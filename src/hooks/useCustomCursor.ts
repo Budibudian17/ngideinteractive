@@ -3,7 +3,10 @@ import { useEffect } from 'react';
 export const useCustomCursor = () => {
   useEffect(() => {
     // Check if device is mobile (touch device)
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isMobile = (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      ('ontouchstart' in window && navigator.maxTouchPoints > 0)
+    );
     
     // Don't create custom cursor on mobile devices
     if (isMobile) {

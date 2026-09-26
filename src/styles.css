@@ -166,6 +166,16 @@ a:hover {
     cursor: auto !important;
   }
 }
+
+/* Only hide default cursor on desktop, show on mobile */
+@media (min-width: 768px) {
+  html {
+    cursor: none;
+  }
+  * {
+    cursor: none !important;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .status-pulse { animation: none; }

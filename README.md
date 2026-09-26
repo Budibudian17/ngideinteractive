@@ -16,7 +16,7 @@ Ngide Interactive is an independent game development studio based in Depok, Indo
 
 ### Current Project: Deep Space Echo
 
-Our first transmission — a narrative systems game about maintaining a failing listening station beyond mapped space, decoding distant signals, and deciding which voices deserve an answer.
+Our first transmission - a narrative systems game about maintaining a failing listening station beyond mapped space, decoding distant signals, and deciding which voices deserve an answer.
 
 ---
 

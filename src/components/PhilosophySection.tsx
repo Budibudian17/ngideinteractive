@@ -31,7 +31,7 @@ export const PhilosophySection = () => {
           <p className="font-mono text-[9px] uppercase text-background/60">01 / Philosophy</p>
         </div>
         <div className="px-6 py-20 md:p-14 lg:px-20 lg:py-28">
-          <p className="max-w-6xl font-display text-[clamp(2rem,4.6vw,5rem)] font-medium leading-[1.02]">
+          <p className="max-w-6xl font-display text-[clamp(2rem,4.6vw,5rem)] font-medium leading-[1.02] reveal-text">
             INDEPENDENT GAMES ARE <span className="text-background/40 inline-block transition-all duration-300 ease-in-out" style={{
               opacity: isAnimating ? 0 : 1,
               transform: isAnimating ? 'translateY(20px)' : 'translateY(0)'
